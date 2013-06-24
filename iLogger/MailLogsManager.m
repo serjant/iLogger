@@ -1,33 +1,32 @@
 //
-//  SecondViewController.m
+//  MailLogsViewController.m
 //  iLogger
 //
-//  Created by Dmitry Beym on 1/14/13.
+//  Created by Dmitry Beym on 1/16/13.
 //  Copyright (c) 2013 SAMity. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "MailLogsViewController.h"
 
-@interface SecondViewController ()
+@interface MailLogsViewController ()
 
 @end
 
-@implementation SecondViewController
+@implementation MailLogsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = NSLocalizedString(@"Second", @"Second");
-        self.tabBarItem.image = [UIImage imageNamed:@"second"];
+        // Custom initialization
     }
     return self;
 }
-							
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning

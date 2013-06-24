@@ -7,10 +7,11 @@
 //
 
 #import "AppDelegate.h"
-
-#import "FirstViewController.h"
-
-#import "SecondViewController.h"
+#import "ProcessesViewController.h"
+#import "LogsViewController.h"
+#import "ActivityViewController.h"
+#import "SystemViewController.h"
+#import "Appirater.h"
 
 @implementation AppDelegate
 
@@ -18,18 +19,27 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    UIViewController *viewController1, *viewController2;
+    UIViewController *viewController1, *viewController2, *viewController3, *viewController4;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController_iPhone" bundle:nil];
-        viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPhone" bundle:nil];
+        viewController1 = [[ProcessesViewController alloc] initWithNibName:@"ProcessesViewController_iPhone" bundle:nil];
+        viewController2 = [[LogsViewController alloc] initWithNibName:@"LogsViewController_iPhone" bundle:nil];
+        viewController3 = [[ActivityViewController alloc] initWithNibName:@"ActivityViewController_iPhone" bundle:nil];
+        viewController4 = [[SystemViewController alloc] initWithNibName:@"SystemViewController_iPhone" bundle:nil];
     } else {
-        viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil];
-        viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPad" bundle:nil];
+        viewController1 = [[ProcessesViewController alloc] initWithNibName:@"ProcessesViewController_iPad" bundle:nil];
+        viewController2 = [[LogsViewController alloc] initWithNibName:@"LogsViewController_iPad" bundle:nil];
+        viewController3 = [[ActivityViewController alloc] initWithNibName:@"ActivityViewController_iPad" bundle:nil];
+        viewController4 = [[SystemViewController alloc] initWithNibName:@"SystemViewController_iPad" bundle:nil];
     }
+    
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[viewController1, viewController2];
+    self.tabBarController.viewControllers = @[viewController1, viewController2, viewController3, viewController4];
     self.window.rootViewController = self.tabBarController;
+    self.tabBarController.tabBar.tintColor = [UIColor colorWithRed:15.0f/255.0f green:9.0f/255.0f blue:29.0f/255.0f alpha:1.0f];
     [self.window makeKeyAndVisible];
+    
+    [Appirater appLaunched:YES];
+    
     return YES;
 }
 
