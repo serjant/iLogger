@@ -2,33 +2,23 @@
 //  ProcessesTableViewCell.h
 //  iLogger
 //
-//  Created by Dmitry Beym on 1/16/13.
+//  Created by David Baum on 1/16/13.
 //  Copyright (c) 2013 SAMity. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ProcessesTableViewCell : UITableViewCell {
-    IBOutlet UIImageView *processImageView;
-    IBOutlet UIImageView *listSubRowImageView;
-    IBOutlet UILabel *processNameLabel;
-    IBOutlet UIButton *processPriorityButton;
-    IBOutlet UILabel *processStartDateLabel;
-    IBOutlet UILabel *processPIDLabel;
-    IBOutlet UIButton *processViewLogsButton;
-    IBOutlet UILabel *processPidCaptionLabel;
-    IBOutlet UILabel *processStartDateCaptionLabel;
-}
+@interface ProcessesTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UIImageView *processImageView;
-@property (nonatomic, strong) IBOutlet UILabel *processNameLabel;
-@property (nonatomic, strong) IBOutlet UIButton *processPriorityButton;
-@property (nonatomic, strong) IBOutlet UILabel *processStartDateLabel;
-@property (nonatomic, strong) IBOutlet UILabel *processPIDLabel;
-@property (nonatomic, strong) IBOutlet UIButton *processViewLogsButton;
-@property (nonatomic, strong) IBOutlet UIImageView *listSubRowImageView;
-@property (nonatomic, strong) IBOutlet IBOutlet UILabel *processPidCaptionLabel;
-@property (nonatomic, strong) IBOutlet IBOutlet UILabel *processStartDateCaptionLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *processImageView;
+@property (nonatomic, weak) IBOutlet UILabel *processNameLabel;
+@property (nonatomic, weak) IBOutlet UIButton *processPriorityButton;
+@property (nonatomic, weak) IBOutlet UILabel *processStartDateLabel;
+@property (nonatomic, weak) IBOutlet UILabel *processPIDLabel;
+@property (nonatomic, weak) IBOutlet UIButton *processViewLogsButton;
+@property (nonatomic, weak) IBOutlet UIImageView *listSubRowImageView;
+@property (nonatomic, weak) IBOutlet IBOutlet UILabel *processPidCaptionLabel;
+@property (nonatomic, weak) IBOutlet IBOutlet UILabel *processStartDateCaptionLabel;
 
 - (void) setDetailsHidden:(BOOL) isHidden;
 

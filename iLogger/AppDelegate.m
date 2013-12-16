@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  iLogger
 //
-//  Created by Dmitry Beym on 1/14/13.
+//  Created by David Baum on 1/14/13.
 //  Copyright (c) 2013 SAMity. All rights reserved.
 //
 

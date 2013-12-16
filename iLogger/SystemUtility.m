@@ -2,7 +2,7 @@
 //  SystemUtility.m
 //  iLogger
 //
-//  Created by Dmitry Beym on 1/15/13.
+//  Created by David Baum on 1/15/13.
 //  Copyright (c) 2013 SAMity. All rights reserved.
 //
 
@@ -92,10 +92,10 @@
     
     query = asl_new(ASL_TYPE_QUERY);
     
-    if(aDate) {
+    /*if(aDate) {
         NSString *logSince = [NSString stringWithFormat:@"%.0f", [aDate timeIntervalSince1970]];
         asl_set_query(query, ASL_KEY_TIME, [logSince UTF8String], ASL_QUERY_OP_GREATER_EQUAL);
-    } 
+    } */
     
     aslresponse response = asl_search(NULL, query);
     while (NULL != (message = aslresponse_next(response))) {
@@ -285,12 +285,12 @@
     mib[4] = NET_RT_IFLIST;
     
     if ((mib[5] = if_nametoindex("en0")) == 0) {
-        printf("Error: if_nametoindex error\n");
+        printf("Error name to index is 0 error\n");
         return NULL;
     }
     
     if (sysctl(mib, 6, NULL, &len, NULL, 0) < 0) {
-        printf("Error: sysctl, take 1\n");
+        printf("Error sysctl");
         return NULL;
     }
     
@@ -300,7 +300,7 @@
     }
     
     if (sysctl(mib, 6, buf, &len, NULL, 0) < 0) {
-        printf("Error: sysctl, take 2\n");
+        printf("Error sysctl");
         free(buf);
         
         return NULL;
@@ -360,15 +360,15 @@
 - (NSDate *) getBootDate {
     int mib[2];
     size_t size;
-    struct timeval  boottime;
+    struct timeval  bootTime;
     
     mib[0] = CTL_KERN;
     mib[1] = KERN_BOOTTIME;
     
-    size = sizeof(boottime);
+    size = sizeof(bootTime);
     
-    if (sysctl(mib, sizeof(mib) / sizeof(int), &boottime, &size, NULL, 0) != -1) {
-        return [NSDate dateWithTimeIntervalSince1970:boottime.tv_sec];
+    if (sysctl(mib, sizeof(mib) / sizeof(int), &bootTime, &size, NULL, 0) != -1) {
+        return [NSDate dateWithTimeIntervalSince1970:bootTime.tv_sec];
     }
     
     return nil;

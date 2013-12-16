@@ -2,7 +2,7 @@
 //  SystemViewController.h
 //  iLogger
 //
-//  Created by Dmitry Beym on 1/20/13.
+//  Created by David Baum on 1/20/13.
 //  Copyright (c) 2013 SAMity. All rights reserved.
 //
 
@@ -12,19 +12,6 @@
 #import "F3BarGauge.h"
 
 @interface SystemViewController : UIViewController {
-    IBOutlet UILabel *udid;
-    IBOutlet UILabel *osVersion;
-    IBOutlet UILabel *model;
-    IBOutlet UILabel *total;
-    IBOutlet UILabel *free;
-    IBOutlet UILabel *progressValueLabel;
-    IBOutlet UILabel *macAddress;
-    IBOutlet UILabel *ipAddress;
-    IBOutlet UILabel *bootTime;
-    IBOutlet UILabel *cpuFreq;
-    IBOutlet F3BarGauge *cpuBarGaugeVew;
-    IBOutlet YLProgressBar *progressView;
-    
     @private
         processor_info_array_t cpuInfo, prevCpuInfo;
         mach_msg_type_number_t numCpuInfo, numPrevCpuInfo;
@@ -33,17 +20,17 @@
         NSLock *CPUUsageLock;
 }
 
-@property (nonatomic, strong) IBOutlet UILabel *udid;
-@property (nonatomic, strong) IBOutlet UILabel *osVersion;
-@property (nonatomic, strong) IBOutlet UILabel *model;
-@property (nonatomic, strong) IBOutlet UILabel *total;
-@property (nonatomic, strong) IBOutlet UILabel *free;
-@property (nonatomic, strong) IBOutlet YLProgressBar *progressView;
-@property (nonatomic, strong) IBOutlet UILabel *progressValueLabel;
-@property (nonatomic, strong) IBOutlet UILabel *macAddress;
-@property (nonatomic, strong) IBOutlet UILabel *ipAddress;
-@property (nonatomic, strong) IBOutlet UILabel *bootTime;
-@property (nonatomic, strong) IBOutlet UILabel *cpuFreq;
-@property (nonatomic, strong) IBOutlet F3BarGauge *cpuBarGaugeVew;
+@property (nonatomic, weak) IBOutlet UILabel *udid;
+@property (nonatomic, weak) IBOutlet UILabel *osVersion;
+@property (nonatomic, weak) IBOutlet UILabel *model;
+@property (nonatomic, weak) IBOutlet UILabel *total;
+@property (nonatomic, weak) IBOutlet UILabel *free;
+@property (nonatomic, weak) IBOutlet YLProgressBar *progressView;
+@property (nonatomic, weak) IBOutlet UILabel *progressValueLabel;
+@property (nonatomic, weak) IBOutlet UILabel *macAddress;
+@property (nonatomic, weak) IBOutlet UILabel *ipAddress;
+@property (nonatomic, weak) IBOutlet UILabel *bootTime;
+@property (nonatomic, weak) IBOutlet UILabel *cpuFreq;
+@property (nonatomic, weak) IBOutlet F3BarGauge *cpuBarGaugeVew;
 
 @end

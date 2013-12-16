@@ -2,7 +2,7 @@
 //  SystemViewController.m
 //  iLogger
 //
-//  Created by Dmitry Beym on 1/20/13.
+//  Created by David Baum on 1/20/13.
 //  Copyright (c) 2013 SAMity. All rights reserved.
 //
 
@@ -14,10 +14,9 @@
 
 #import "SystemViewController.h"
 #import "SystemUtility.h"
-
-@interface SystemViewController ()
-
-@end
+#import "ACMagnifyingView.h"
+#import "ACLoupe.h"
+#import <AdSupport/AdSupport.h>
 
 @implementation SystemViewController
 
@@ -38,13 +37,19 @@
 }
 
 - (void)viewDidLoad {
+    ACMagnifyingView *magnifyingView = (ACMagnifyingView *) self.view;
+    
+    ACLoupe *loupe = [[ACLoupe alloc] init];
+	magnifyingView.magnifyingGlass = loupe;
+	loupe.scaleAtTouchPoint = NO;
+    
     [super viewDidLoad];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
     self.progressView.progressTintColor = [UIColor greenColor];
     
-    udid.text = [[[UIDevice currentDevice] uniqueIdentifier] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    udid.text = [[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
     model.text = [[UIDevice currentDevice] localizedModel];
     osVersion.text = [NSString stringWithFormat:@"%@ %@", [[UIDevice currentDevice] systemName], [[UIDevice currentDevice] systemVersion]];
     macAddress.text = [[SystemUtility shareInstance] getMACAddress];

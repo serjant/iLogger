@@ -19,7 +19,7 @@ static CGFloat const kACMagnifyingGlassDefaultScale = 1.5;
 @synthesize viewToMagnify, touchPoint, touchPointOffset, scale, scaleAtTouchPoint;
 
 - (id)init {
-    self = [self initWithFrame:CGRectMake(0, 0, kACMagnifyingGlassDefaultRadius*2, kACMagnifyingGlassDefaultRadius*2)];
+    self = [self initWithFrame:CGRectMake(0, 0, kACMagnifyingGlassDefaultRadius * 2, kACMagnifyingGlassDefaultRadius * 2)];
     return self;
 }
 
@@ -53,7 +53,7 @@ static CGFloat const kACMagnifyingGlassDefaultScale = 1.5;
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextTranslateCTM(context, self.frame.size.width/2, self.frame.size.height/2 );
 	CGContextScaleCTM(context, scale, scale);
-	CGContextTranslateCTM(context, -touchPoint.x, -touchPoint.y + (self.scaleAtTouchPoint? 0 : self.bounds.size.height/2));
+	CGContextTranslateCTM(context, -touchPoint.x, -touchPoint.y + (self.scaleAtTouchPoint ? 0 : self.bounds.size.height / 4));
 	[self.viewToMagnify.layer renderInContext:context];
 }
 

@@ -2,13 +2,15 @@
 //  ActivityViewController.m
 //  iLogger
 //
-//  Created by Dmitry Beym on 1/15/13.
+//  Created by David Baum on 1/15/13.
 //  Copyright (c) 2013 SAMity. All rights reserved.
 //
 #import "ActivityViewController.h"
 #import "SystemUtility.h"
 #import "MemoryUsage.h"
 #import "BNColor.h"
+#import "ACLoupe.h"
+#import "ACMagnifyingView.h"
 
 @interface ActivityViewController ()
 
@@ -30,6 +32,12 @@
 }
 
 - (void)viewDidLoad {
+    ACMagnifyingView *magnifyingView = (ACMagnifyingView *) self.view;
+    
+    ACLoupe *loupe = [[ACLoupe alloc] init];
+	magnifyingView.magnifyingGlass = loupe;
+	loupe.scaleAtTouchPoint = NO;
+    
     [self updateMemoryUsage];
     [super viewDidLoad];
 }
@@ -59,7 +67,7 @@
     float free = (1.0f / total ) * (float)memoryUsage.free;
     float inactive = 1.0f - free - wired - active;
     
-    chart = [[BNPieChart alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.height / 1.5, self.view.frame.size.width / 1.5)];
+    chart = [[BNPieChart alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width / 1.5, self.view.frame.size.height / 1.5)];
     [chart addSlicePortion:active withName:nil];
     [chart addSlicePortion:free withName:nil];
     [chart addSlicePortion:wired withName:nil];
@@ -79,7 +87,7 @@
     chart.center = chart.superview.center;
     
     CGRect frame = chart.frame;
-    chart.frame = CGRectMake(frame.origin.x, frame.origin.y - 40.0f, chart.frame.size.width, frame.size.height);
+    chart.frame = CGRectMake(frame.origin.x, -20, chart.frame.size.width, frame.size.height);
     
     [self.usedMemLabel setText:[NSString stringWithFormat:@"%d MB", memoryUsage.active]];
     [self.wiredMemLabel setText:[NSString stringWithFormat:@"%d MB", memoryUsage.wired]];
