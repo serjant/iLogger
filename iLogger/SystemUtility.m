@@ -39,7 +39,6 @@
 }
 
 - (NSArray *)runningProcesses {
-    
     size_t size;
     struct kinfo_proc *processes = NULL;
     int status;
@@ -90,12 +89,18 @@
     aslmsg query, message;
     const char *key, *val;
     
-    query = asl_new(ASL_TYPE_QUERY);
+    aslmsg msg = asl_new(ASL_TYPE_MSG);
+    asl_set(msg, ASL_KEY_READ_UID, "-1");
+    asl_log(NULL, msg, ASL_LEVEL_NOTICE, "Hello, world!");
+    asl_free(msg);
     
-    /*if(aDate) {
+    query = asl_new(ASL_TYPE_QUERY);
+    //asl_set_query(query, ASL_KEY_SENDER, "iLogger", ASL_QUERY_OP_SUBSTRING);
+    //asl_set_query(query, ASL_KEY_READ_UID, [@"-1" cStringUsingEncoding:NSASCIIStringEncoding], ASL_QUERY_OP_EQUAL);
+    if(aDate) {
         NSString *logSince = [NSString stringWithFormat:@"%.0f", [aDate timeIntervalSince1970]];
         asl_set_query(query, ASL_KEY_TIME, [logSince UTF8String], ASL_QUERY_OP_GREATER_EQUAL);
-    } */
+    }
     
     aslresponse response = asl_search(NULL, query);
     while (NULL != (message = aslresponse_next(response))) {
@@ -161,10 +166,13 @@
     query = asl_new(ASL_TYPE_QUERY);
     
     asl_set_query(query, ASL_KEY_PID, [aPID cStringUsingEncoding:NSASCIIStringEncoding], ASL_QUERY_OP_EQUAL);
+    //asl_set(query, ASL_KEY_READ_UID, 501);
+    asl_set_query(query, ASL_KEY_READ_UID, [@"-1" cStringUsingEncoding:NSASCIIStringEncoding], ASL_QUERY_OP_EQUAL);
+    
     if(aDate) {
         NSString *logSince = [NSString stringWithFormat:@"%.0f", [aDate timeIntervalSince1970]];
         asl_set_query(query, ASL_KEY_TIME, [logSince UTF8String], ASL_QUERY_OP_GREATER_EQUAL);
-    } 
+    }
     
     response = asl_search(NULL, query);
     while (NULL != (msg = aslresponse_next(response))) {

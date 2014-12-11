@@ -10,7 +10,7 @@
 #import <iAd/iAd.h>
 #import "Process.h"
 
-@interface ProcessesViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, ADBannerViewDelegate> {
+@interface ProcessesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ADBannerViewDelegate> {
     NSIndexPath *selectedIndexPath;
     BOOL bannerIsVisible;
 }

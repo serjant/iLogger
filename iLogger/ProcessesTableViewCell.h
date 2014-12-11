@@ -17,8 +17,8 @@
 @property (nonatomic, weak) IBOutlet UILabel *processPIDLabel;
 @property (nonatomic, weak) IBOutlet UIButton *processViewLogsButton;
 @property (nonatomic, weak) IBOutlet UIImageView *listSubRowImageView;
-@property (nonatomic, weak) IBOutlet IBOutlet UILabel *processPidCaptionLabel;
-@property (nonatomic, weak) IBOutlet IBOutlet UILabel *processStartDateCaptionLabel;
+@property (nonatomic, weak) IBOutlet UILabel *processPidCaptionLabel;
+@property (nonatomic, weak) IBOutlet UILabel *processStartDateCaptionLabel;
 
 - (void) setDetailsHidden:(BOOL) isHidden;
 

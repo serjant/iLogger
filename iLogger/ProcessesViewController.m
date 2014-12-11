@@ -12,6 +12,7 @@
 #import "SystemUtility.h"
 #import "Process.h"
 #import "MBProgressHUD.h"
+#import "LoggerNavigationController.h"
 
 @implementation ProcessesViewController
 
@@ -35,11 +36,12 @@
 }
 							
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.jpg"]];
 
     self.processesTableView.backgroundView = imageView;
     self.processesTableView.rowHeight = 96.0f;
-    [super viewDidLoad];
     
     //[[SystemUtility shareInstance] memoryUsage];
     //[[SystemUtility shareInstance] getCPUInfo];
@@ -82,7 +84,8 @@
         });
     });
     
-    LogsViewController *logsViewController = [self.tabBarController.viewControllers objectAtIndex:1];
+    LoggerNavigationController *loggerNavController = [self.tabBarController.viewControllers objectAtIndex:1];
+    LogsViewController *logsViewController = (LogsViewController *)loggerNavController.topViewController;
     logsViewController.process = nil;
     
     [super viewDidAppear:animated];
@@ -136,10 +139,11 @@
     [self.processesTableView endUpdates];
     [cell setSelected:NO animated:YES];
     
-    LogsViewController *logsViewController = [self.tabBarController.viewControllers objectAtIndex:1];
+    LoggerNavigationController *loggerNavController = [self.tabBarController.viewControllers objectAtIndex:1];
+    LogsViewController *logsViewController = (LogsViewController *)loggerNavController.topViewController;
     logsViewController.process = process;
     
-    self.tabBarController.selectedViewController = logsViewController;
+    self.tabBarController.selectedViewController = loggerNavController;
 }
 
 #pragma mark Table Methods
@@ -184,12 +188,7 @@
     ProcessesTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier: simpleTableIdentifier];
     
     if(cell == nil) {
-        NSArray* views = nil;
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-            views = [[NSBundle mainBundle] loadNibNamed:@"ProcessesTableViewCell_iPhone" owner:nil options:nil];
-        } else {
-            views = [[NSBundle mainBundle] loadNibNamed:@"ProcessesTableViewCell_iPad" owner:nil options:nil];
-        }
+        NSArray *views = [[NSBundle mainBundle] loadNibNamed:NSStringFromClass([ProcessesTableViewCell class]) owner:nil options:nil];
         
         for (UIView *view in views) {
             if([view isKindOfClass:[UITableViewCell class]]) {
